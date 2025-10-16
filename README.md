@@ -1,4 +1,4 @@
-# Wrodium Dashboard
+# Wrodium Demo Dashboard/ For UI/UX Improvement
 
 A modern, space-themed React dashboard for Wrodium's SEO and AI-powered content optimization platform. **No backend required** - everything runs client-side with mock data.
 
