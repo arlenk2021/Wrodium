@@ -1,0 +1,211 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* shadcn/ui variables */
+    --background: 7 8 21;
+    --foreground: 226 232 240;
+    --card: 255 255 255 / 0.05;
+    --card-foreground: 226 232 240;
+    --popover: 255 255 255 / 0.05;
+    --popover-foreground: 226 232 240;
+    --primary: 34 211 238;
+    --primary-foreground: 7 8 21;
+    --secondary: 255 255 255 / 0.1;
+    --secondary-foreground: 226 232 240;
+    --muted: 255 255 255 / 0.05;
+    --muted-foreground: 156 163 175;
+    --accent: 34 211 238;
+    --accent-foreground: 7 8 21;
+    --destructive: 239 68 68;
+    --destructive-foreground: 226 232 240;
+    --border: 255 255 255 / 0.1;
+    --input: 255 255 255 / 0.1;
+    --ring: 34 211 238;
+    --radius: 0.75rem;
+
+    /* Space theme variables */
+    --space-bg: 7 8 21;
+    --nebula-1: 91 33 182;
+    --nebula-2: 14 165 233;
+    --ion: 34 211 238;
+    --starlight: 226 232 240;
+    --warning: 245 158 11;
+    --success: 34 197 94;
+    --critical: 239 68 68;
+  }
+
+  .dark {
+    /* shadcn/ui dark variables */
+    --background: 7 8 21;
+    --foreground: 226 232 240;
+    --card: 255 255 255 / 0.05;
+    --card-foreground: 226 232 240;
+    --popover: 255 255 255 / 0.05;
+    --popover-foreground: 226 232 240;
+    --primary: 34 211 238;
+    --primary-foreground: 7 8 21;
+    --secondary: 255 255 255 / 0.1;
+    --secondary-foreground: 226 232 240;
+    --muted: 255 255 255 / 0.05;
+    --muted-foreground: 156 163 175;
+    --accent: 34 211 238;
+    --accent-foreground: 7 8 21;
+    --destructive: 239 68 68;
+    --destructive-foreground: 226 232 240;
+    --border: 255 255 255 / 0.1;
+    --input: 255 255 255 / 0.1;
+    --ring: 34 211 238;
+
+    /* Space theme variables for dark mode */
+    --space-bg: 7 8 21;
+    --nebula-1: 91 33 182;
+    --nebula-2: 14 165 233;
+    --ion: 34 211 238;
+    --starlight: 226 232 240;
+    --warning: 245 158 11;
+    --success: 34 197 94;
+    --critical: 239 68 68;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background: hsl(var(--space-bg));
+    background-attachment: fixed;
+    color: hsl(var(--foreground));
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    min-height: 100vh;
+    position: relative;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+  }
+
+  /* Two-layer Starfield with different speeds */
+  .starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+      /* Layer 1: Fast-moving small stars (opacity ≤ 0.25) */
+      radial-gradient(1px 1px at 25px 50px, rgba(255, 255, 255, 0.2), transparent),
+      radial-gradient(1px 1px at 75px 100px, rgba(255, 255, 255, 0.15), transparent),
+      radial-gradient(1px 1px at 125px 75px, rgba(255, 255, 255, 0.18), transparent),
+      radial-gradient(1px 1px at 175px 125px, rgba(255, 255, 255, 0.12), transparent),
+      radial-gradient(1px 1px at 225px 50px, rgba(255, 255, 255, 0.22), transparent),
+      radial-gradient(1px 1px at 275px 100px, rgba(255, 255, 255, 0.16), transparent),
+      radial-gradient(1px 1px at 325px 75px, rgba(255, 255, 255, 0.19), transparent),
+      radial-gradient(1px 1px at 375px 125px, rgba(255, 255, 255, 0.14), transparent),
+      /* Layer 2: Slow-moving larger stars (opacity ≤ 0.25) */
+      radial-gradient(2px 2px at 50px 150px, rgba(255, 255, 255, 0.1), transparent),
+      radial-gradient(2px 2px at 150px 200px, rgba(255, 255, 255, 0.08), transparent),
+      radial-gradient(2px 2px at 250px 175px, rgba(255, 255, 255, 0.12), transparent),
+      radial-gradient(2px 2px at 350px 225px, rgba(255, 255, 255, 0.09), transparent);
+    background-repeat: repeat;
+    background-size: 400px 300px;
+    animation: starfield-fast 15s linear infinite, starfield-slow 25s linear infinite;
+  }
+
+  .nebula-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at 25% 75%,
+      hsla(var(--nebula-1), 0.15) 0%,
+      hsla(var(--nebula-2), 0.1) 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse at 75% 25%,
+      hsla(var(--nebula-2), 0.12) 0%,
+      hsla(var(--nebula-1), 0.08) 50%,
+      transparent 90%
+    );
+    pointer-events: none;
+    z-index: -1;
+    animation: nebula-pulse 8s ease-in-out infinite;
+  }
+
+  /* Text legibility overlay */
+  .content-overlay {
+    position: relative;
+  }
+
+  .content-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(7, 8, 21, 0.05) 0%,
+      rgba(7, 8, 21, 0.02) 50%,
+      rgba(7, 8, 21, 0.05) 100%
+    );
+    pointer-events: none;
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  @keyframes starfield-fast {
+    0% { transform: translateY(0px) translateX(0px); }
+    100% { transform: translateY(-300px) translateX(-50px); }
+  }
+
+  @keyframes starfield-slow {
+    0% { transform: translateY(0px) translateX(0px); }
+    100% { transform: translateY(-150px) translateX(25px); }
+  }
+
+  @keyframes nebula-pulse {
+    0%, 100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .starfield {
+      animation: none;
+    }
+    .nebula-bg {
+      animation: none;
+      opacity: 0.6;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
